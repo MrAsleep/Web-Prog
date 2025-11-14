@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <fieldset>
+      <legend>osnovni podaci</legend>
+      <form action="submit_form.php" method="post">
+        <label for="ime">Ime:</label>
+        <br />
+        <input
+          type="text"
+          id="ime"
+          name="ime"
+          placeholder="unesi ime"
+          required
+        /><br /><br />
+
+        <label for="prezime">Prezime:</label>
+        <br />
+        <input
+          type="text"
+          id="prezime"
+          name="prezime"
+          placeholder="Unesi Prezime"
+          required
+        /><br /><br />
+
+        <label for="email">E-mail adresa:</label>
+        <br />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="primer@gmail.com"
+          required
+        /><br /><br />
+
+        <label for="godine">Godine</label>
+        <br />
+        <input
+          type="number"
+          id="godine"
+          name="godine"
+          min="14"
+          max="19"
+          required
+        /><br /><br />
+
+        <label for="datum-rodjenja">Datum rodjenja</label>
+        <br />
+        <input
+          type="date"
+          id="datum-rodjenja"
+          name="datum-rodjenja"
+          required
+        /><br /><br />
+      </form>
+    </fieldset>
+
+    <fieldset>
+      <legend>Podaci o skoli</legend>
+      <label for="razred">Razred:</label>
+      <br /><br />
+      <input type="checkbox" id="prvi" name="razred" value="prvi" required />
+      <label for="prvi">I razred</label><br />
+      <input type="checkbox" id="drugi" name="razred" value="drugi" required />
+      <label for="drugi">II razred</label><br />
+      <input type="checkbox" id="treci" name="razred" value="treci" required />
+      <label for="treci">III razred</label><br />
+      <input
+        type="checkbox"
+        id="cetvrti"
+        name="razred"
+        value="cetvrti"
+        required
+      />
+      <label for="cetvrti">IV razred</label><br /><br />
+
+      <label for="odeljenje">Odeljenje:</label>
+      <br />
+      <select id="odeljenje" name="odeljenje" value="0" required>
+        <option value="" disabled selected>--izaberi odeljenje--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <br /><br />
+    </fieldset>
+
+    <fieldset>
+      <legend>Interesovanja</legend>
+      <input type="checkbox" name="Interesovanja" id="Interesovanja" />
+      <label for="Interesovanja">Programiranje</label><br />
+      <input type="checkbox" name="Interesovanja" id="Interesovanja" />
+      <label for="Interesovanja">Fizika</label><br />
+      <input type="checkbox" name="Interesovanja" id="Interesovanja" />
+      <label for="Interesovanja">Robotika</label><br />
+      <input type="checkbox" name="Interesovanja" id="Interesovanja" />
+      <label for="Interesovanja">vestacka inteligencija</label><br />
+      <br />
+      <label for="opis">Kratak komentar:</label><br />
+      <input
+        type="text"
+        id="opis"
+        name="opis"
+        placeholder="Upisi nesto o sebi..."
+        style="width: 300px; height: 50px"
+      /><br /><br />
+    </fieldset>
+    <input type="submit" value="Posalji" />
+    <input type="submit" value="Obrisi" />
+  </body>
+</html>
