@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gaming Shop</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --card-bg: #ffffff;
+        --text: #273238;
+        --muted: #6b7680;
+        --primary: #0f6674; /* teal */
+        --accent: #ff8a4b; /* warm orange */
+        --glass: rgba(255, 255, 255, 0.6);
+        --shadow: 0 6px 18px rgba(16, 24, 32, 0.08);
+        --nav-height: 64px;
+      }
+
+      /* Reset */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Electrolize", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.45;
+        padding-top: var(--nav-height); /* avoid sticky overlap */
+      }
+      section {
+        scroll-margin-top: calc(var(--nav-height) + 6px);
+      }
+
+      /* Navbar */
+      #navbar {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--nav-height);
+        background: linear-gradient(90deg, var(--primary), #0b5060);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1200;
+        box-shadow: var(--shadow);
+        gap: 8px;
+        padding: 0 12px;
+        margin: 0; /* horizontal padding only */
+      }
+
+      /* Links: no vertical padding to prevent extra navbar height */
+      #navbar a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 0 14px; /* horizontal spacing */
+        height: 100%;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+        transition: background-color 0.18s, transform 0.18s;
+      }
+      #navbar a:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+      }
+      #navbar a:focus {
+        outline: 2px solid rgba(255, 255, 255, 0.15);
+        outline-offset: 3px;
+      }
+
+      /* Hero / video */
+      #home {
+        position: relative;
+        width: 100%;
+        height: 70vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 102, 116, 0.18),
+          rgba(255, 255, 255, 0.02)
+        );
+      }
+      .video-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0.9;
+      }
+      .welcome-text {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+        font-size: clamp(28px, 5vw, 48px);
+        text-align: center;
+        text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+        padding: 8px 16px;
+      }
+
+      /* Proizvodi */
+      #proizvodi {
+        background: transparent;
+        padding: 60px 20px;
+        text-align: center;
+      }
+      #proizvodi h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+      #proizvodi p {
+        color: var(--muted);
+        margin-bottom: 28px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cards-container {
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+        flex-wrap: wrap; /* dopušta prelamanje na uskim ekranima (nema horizontalnog skrola) */
+        align-items: stretch;
+      }
+      .card {
+        flex: 1 1 280px; /* raste i skuplja se po potrebi */
+        max-width: 320px;
+        min-width: 220px;
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 18px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(16, 24, 32, 0.04);
+        transition: transform 0.28s, box-shadow 0.28s;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 40px rgba(16, 24, 32, 0.12);
+      }
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      .card h3 {
+        margin: 8px 0;
+        color: var(--text);
+      }
+      .card button {
+        margin-top: 6px;
+        padding: 10px 18px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(255, 138, 75, 0.14);
+      }
+      .card button:hover {
+        filter: brightness(0.96);
+        transform: translateY(-2px);
+      }
+
+      /* About / team */
+      .text-about {
+        padding: 36px 20px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+        border-radius: 10px;
+        margin: 18px;
+      }
+
+      /* Team: responsive row with even spacing; keep cards side-by-side with horizontal scroll on small screens */
+      .flex-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        gap: 24px;
+        flex-wrap: nowrap; /* prevent wrapping */
+        padding: 28px 20px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .card2 {
+        flex: 0 0 320px; /* fixed width for each card */
+        max-width: 320px;
+        height: 320px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: linear-gradient(180deg, #e6fbff, #dff7f9);
+        cursor: pointer;
+        transition: transform 0.28s, box-shadow 0.28s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card2 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* overlay with name appears on hover */
+      .card2 .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.18s ease, transform 0.18s ease;
+      }
+      .card2:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 40px rgba(16, 24, 32, 0.12);
+      }
+      .card2:hover .overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Radno vreme table tweak */
+      table {
+        border-collapse: collapse;
+        background: transparent;
+      }
+      td {
+        color: var(--muted);
+      }
+
+      /* Kontakt form tweaks */
+      .submit-button {
+        background: var(--primary);
+        color: #fff;
+        border-radius: 8px;
+        padding: 10px 18px;
+        border: none;
+        cursor: pointer;
+      }
+      .submit-button:hover {
+        background: #0b515c;
+      }
+
+      /* Footer/socials */
+      .socials div {
+        background: linear-gradient(90deg, #0b5060, var(--primary));
+        color: #fff;
+        padding: 24px 12px;
+      }
+
+      /* Responsive */
+      @media (max-width: 820px) {
+        .cards-container {
+          gap: 16px;
+        }
+        .card2 {
+          width: 90%;
+        }
+        #navbar {
+          gap: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar (updated anchors to match section ids) -->
+    <div id="navbar">
+      <a href="#home">Home</a>
+      <a href="#proizvodi">Proizvodi</a>
+      <a href="#about">O nama</a>
+      <a href="#radno-vreme">Radno vreme</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#korpa">Korpa</a>
+    </div>
+
+    <!-- Hero section with video -->
+    <section id="home">
+      <iframe
+        src="https://www.youtube.com/embed/0m3O1TYzJE0?si=TnX1HL6XKGDdyebu"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        class="video-container"
+        autoplay
+        muted
+      ></iframe>
+      <div class="welcome-text">Dobrodošli u moj gaming shop</div>
+    </section>
+
+    <!-- Proizvodi section -->
+    <section id="proizvodi">
+      <h2>Proizvodi</h2>
+      <p>
+        U našoj ponudi možete pronaći najnovije PC igre i konzolne igre.
+        Uživajte u najboljoj zabavi!
+      </p>
+
+      <div class="cards-container">
+        <!-- Card for PC Games -->
+        <div class="card">
+          <img src="images/csgo.webp" alt="PC Games" />
+          <h3>PC Igre</h3>
+          </a><button>Pogledaj Ponudu</button>
+        </div>
+
+        <!-- Card for Console Games -->
+        <div class="card">
+          <img src="images/elden.webp" alt="Console Games" />
+          <h3>Konzolne Igre</h3>
+          <button>Pogledaj Ponudu</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="o-nama">
+      <div class="text-about">
+        <h2 style="text-align: center; font-size: 36px">O nama</h2>
+        <p
+          style="
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            padding: 0 20px;
+          "
+        >
+          Mi smo strastveni ljubitelji igara posvećeni pružanju najboljih
+          iskustava našim kupcima. Naša misija je da vam ponudimo širok
+          asortiman igara po povoljnim cenama.
+        </p>
+      </div>
+      <div>
+        <h1 style="text-align: center; font-size: 36px">Nas tim</h1>
+        <div class="flex-container">
+          <div class="card2">
+            <img src="images/nikolic.png" alt="Nikolic Ognjen" />
+            <div class="overlay">Nikolic Ognjen</div>
+          </div>
+          <div class="card2">
+            <img src="images/nikolic.png" alt="Nikolic Ognjen" />
+            <div class="overlay">Nikolic Ognjen</div>
+          </div>
+          <div class="card2">
+            <img src="images/nikolic.png" alt="Nikolic Ognjen" />
+            <div class="overlay">Nikolic Ognjen</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="radno-vreme" class="radno-vreme">
+      <div
+        style="
+          text-align: center;
+          padding: 40px 20px;
+          background-color: #f4f4f4;
+        "
+      >
+        <h2 style="font-size: 36px; margin-bottom: 20px">Radno vreme</h2>
+        <table
+          style="
+            margin: 0 auto;
+            font-size: 18px;
+            color: #666;
+            border-collapse: collapse;
+          "
+        >
+          <tbody>
+            <tr>
+              <td style="padding: 8px 16px; border: 1px solid #ddd">
+                Ponedeljak - Petak
+              </td>
+              <td style="padding: 8px 16px; border: 1px solid #ddd">
+                10:00 - 20:00
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 16px; border: 1px solid #ddd">Subota</td>
+              <td style="padding: 8px 16px; border: 1px solid #ddd">
+                10:00 - 18:00
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 16px; border: 1px solid #ddd">Nedelja</td>
+              <td style="padding: 8px 16px; border: 1px solid #ddd">
+                Zatvoreno
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="mapa" class="mapa">
+      <h1 style="font-size: 36px; text-align: center; margin-bottom: 16px">
+        ĆUPRIJA — Gimnazija
+      </h1>
+      <div style="display: flex; justify-content: center; padding: 20px">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2873.304798784662!2d21.368679476833528!3d43.93236527109023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4756bf5127e03491%3A0x20e94ec34eb67617!2z0JPQuNC80L3QsNC30LjRmNCwINCL0YPQv9GA0LjRmNCw!5e0!3m2!1ssr!2srs!4v1765539575770!5m2!1ssr!2srs"
+          width="100%"
+          max-width="900px"
+          height="500px"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+
+    <section id="kontakt" class="kontakt">
+      <div
+        style="
+          max-width: 600px;
+          margin: 40px auto;
+          padding: 20px;
+          background: #f9f9f9;
+          border-radius: 8px;
+        "
+      >
+        <h2 style="text-align: center; font-size: 28px; margin-bottom: 16px">
+          Kontakt
+        </h2>
+        <form action="#" method="post" novalidate>
+          <label
+            for="ime"
+            style="display: block; margin-bottom: 6px; font-weight: 600"
+            >Ime</label
+          >
+          <input
+            id="ime"
+            name="ime"
+            type="text"
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 12px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            "
+          />
+
+          <label
+            for="prezime"
+            style="display: block; margin-bottom: 6px; font-weight: 600"
+            >Prezime</label
+          >
+          <input
+            id="prezime"
+            name="prezime"
+            type="text"
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 12px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            "
+          />
+
+          <label
+            for="email"
+            style="display: block; margin-bottom: 6px; font-weight: 600"
+            >Email</label
+          >
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 12px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            "
+          />
+
+          <label
+            for="poruka"
+            style="display: block; margin-bottom: 6px; font-weight: 600"
+            >Poruka (opciono)</label
+          >
+          <textarea
+            id="poruka"
+            name="poruka"
+            rows="4"
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 12px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            "
+          ></textarea>
+
+          <div style="text-align: center">
+            <button type="submit" class="submit-button">Pošalji</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- placeholder korpa section -->
+    <section id="korpa" style="padding: 60px 20px; text-align: center">
+      <h2 style="font-size: 28px; margin-bottom: 12px">Korpa</h2>
+      <p style="color: #666">Vaša korpa je trenutno prazna.</p>
+    </section>
+
+    <section class="socials">
+      <div
+        style="
+          text-align: center;
+          padding: 20px;
+          background-color: #333;
+          color: white;
+        "
+      >
+        <h2 style="margin-bottom: 16px">Pratite nas na društvenim mrežama</h2>
+        <a
+          href="#"
+          style="
+            color: white;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+          "
+          >Facebook</a
+        >
+        <a
+          href="#"
+          style="
+            color: white;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+          "
+          >Twitter</a
+        >
+        <a
+          href="#"
+          style="
+            color: white;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+          "
+          >Instagram</a
+        >
+      </div>
+    </section>
+  </body>
+</html>
