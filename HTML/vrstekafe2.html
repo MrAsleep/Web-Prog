@@ -56,16 +56,23 @@
         border-bottom: 2px solid #8b4513;
         padding-bottom: 10px;
       }
-      ul {
-        list-style-type: none;
+      /* Card-style list: lay out items in a row (wrap on small screens) */
+      #vrste ul {
+        list-style: none;
         padding: 0;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       }
-      ul li {
+
+      #vrste ul li {
         background: #fff;
-        margin: 10px 0;
+        margin: 0;
         padding: 15px;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: auto;
+        max-width: none;
       }
       .gallery {
         display: flex;
@@ -131,6 +138,171 @@
         font-size: 1.2em;
         margin-bottom: 40px;
       }
+      .intro .intro-content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .intro .intro-img {
+        width: 350px;
+        max-height: 200px;
+        max-width: 90%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .video-container {
+        width: 100%;
+        max-width: 900px;
+        margin: 16px auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      .video-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+      }
+
+      .coffee-video {
+        width: 320px;
+        max-width: 100%;
+        margin: 12px auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .coffee-video iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .social-bottom {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+        padding: 18px 0;
+        background: transparent;
+      }
+
+      .social-bottom img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+      }
+
+      /* Stack cards on very small screens */
+      @media (max-width: 600px) {
+        #vrste ul {
+          flex-direction: column;
+          gap: 12px;
+          align-items: stretch;
+        }
+
+        #vrste ul li {
+          flex: 1 1 auto;
+          max-width: none;
+        }
+      }
+
+      /* Desktop: exactly 4 cards per row (accounting for gaps) */
+      @media (min-width: 900px) {
+        #vrste ul {
+          grid-template-columns: repeat(4, 1fr);
+          padding-bottom: 8px;
+        }
+      }
+
+      /* Tablet: 2 cards per row */
+      @media (min-width: 600px) and (max-width: 899px) {
+        #vrste ul {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* From Uiverse.io by eslam-hany */
+      .book {
+        position: relative;
+        border-radius: 10px;
+        width: 220px;
+        height: 300px;
+        background-color: whitesmoke;
+        -webkit-box-shadow: 1px 1px 12px #000;
+        box-shadow: 1px 1px 12px #000;
+        -webkit-transform: preserve-3d;
+        -ms-transform: preserve-3d;
+        transform: preserve-3d;
+        -webkit-perspective: 2000px;
+        perspective: 2000px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        color: #000;
+      }
+
+      .cover {
+        top: 0;
+        position: absolute;
+        background-color: lightgray;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        -webkit-transform-origin: 0;
+        -ms-transform-origin: 0;
+        transform-origin: 0;
+        -webkit-box-shadow: 1px 1px 12px #000;
+        box-shadow: 1px 1px 12px #000;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+
+      .book:hover .cover {
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        -webkit-transform: rotatey(-80deg);
+        -ms-transform: rotatey(-80deg);
+        transform: rotatey(-80deg);
+      }
+
+      p {
+        font-size: 20px;
+        font-weight: bolder;
+        padding: 30px;
+        text-align: center;
+      }
+      #vrste {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     </style>
   </head>
   <body>
@@ -146,27 +318,49 @@
     </nav>
     <main>
       <section class="intro">
-        <p>
-          Kafa dolazi u raznim oblicima i ukusima, a svaka vrsta ima svoje
-          jedinstvene karakteristike. Dođite i uživajte u našim specijalitetima!
-        </p>
+        <div class="intro-content">
+          <img
+            src="images/nikolic.png"
+            alt="Narukvica kafe"
+            class="intro-img"
+          />
+          <p>
+            Kafa dolazi u raznim oblicima i ukusima, a svaka vrsta ima svoje
+            jedinstvene karakteristike. Dođite i uživajte u našim
+            specijalitetima!
+          </p>
+        </div>
       </section>
+      <h2 style="text-align: center">Vrste Kafe</h2>
       <section id="vrste">
-        <h2>Vrste Kafe</h2>
-        <ul>
-          <li>
-            <strong>Espresso</strong>: Jaka kafa koja se priprema pod pritiskom.
-          </li>
-          <li>
-            <strong>Latte</strong>: Kafa sa mlekom, obično se poslužuje sa
-            penom.
-          </li>
-          <li>
-            <strong>Cappuccino</strong>: Espresso sa jednakim delovima mleka i
-            mlečne pene.
-          </li>
-          <li><strong>Americano</strong>: Espresso razblažen vodom.</li>
-        </ul>
+        <!-- From Uiverse.io by eslam-hany -->
+        <div class="book">
+          <p>Jaka kafa koja se priprema pod pritiskom.</p>
+          <div class="cover">
+            <p>Espresso</p>
+          </div>
+        </div>
+        <!-- From Uiverse.io by eslam-hany -->
+        <div class="book">
+          <p>Kafa sa mlekom, obično se poslužuje sa penom.</p>
+          <div class="cover">
+            <p>Latte</p>
+          </div>
+        </div>
+
+        <!-- From Uiverse.io by eslam-hany -->
+        <div class="book">
+          <p>Espresso sa mlekom i mlečnom penom.</p>
+          <div class="cover">
+            <p>Cappuccino</p>
+          </div>
+        </div>
+        <div class="book">
+          <p>Espresso razblažen vodom.</p>
+          <div class="cover">
+            <p>Americano</p>
+          </div>
+        </div>
       </section>
       <section id="galerija">
         <h2>Galerija Kafe</h2>
@@ -184,13 +378,47 @@
             Koristite Espresso aparat i finu kafu. Priprema traje oko 25-30
             sekundi.
           </dd>
+          <div class="coffee-video">
+            <iframe
+              src="https://www.youtube.com/embed/FEKtVWfixdg"
+              title="Espresso - video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
           <dt>Latte</dt>
           <dd>
             Pripremite espresso, zagrejte mleko i dodajte ga u espresso sa malo
             pene.
           </dd>
+          <div class="coffee-video">
+            <iframe
+              src="https://www.youtube.com/embed/FEKtVWfixdg"
+              title="Latte - video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
           <dt>Cappuccino</dt>
           <dd>Pripremite espresso, dodajte jednaku količinu mleka i pene.</dd>
+          <div class="coffee-video">
+            <iframe
+              src="https://www.youtube.com/embed/FEKtVWfixdg"
+              title="Cappuccino - video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <dt>Americano</dt>
+          <dd>Espresso razblažen vodom.</dd>
+          <div class="coffee-video">
+            <iframe
+              src="https://www.youtube.com/embed/FEKtVWfixdg"
+              title="Americano - video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         </dl>
       </section>
       <section id="radno-vreme">
@@ -273,17 +501,7 @@
           </tbody>
         </table>
       </section>
-      <section>
-        <h2>Video o Pripremi Kafe</h2>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/FEKtVWfixdg"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </section>
+      <!-- video sekcija je premestena u 'Priprema Kafe' -->
       <section>
         <h2>Zvuk Aparata za Kafu</h2>
         <audio controls>
@@ -294,17 +512,26 @@
           Vaš pregledač ne podržava audio element.
         </audio>
       </section>
-      <section id="resursi">
-        <h2>Resursi za Učenje</h2>
-        <ul>
-          <li>
-            <a href="https://www.perfectdailygrind.com/">Perfect Daily Grind</a>
-          </li>
-          <li><a href="https://www.thecoffeehouse.com/">Coffee House</a></li>
-          <li><a href="https://www.coffeereview.com/">Coffee Review</a></li>
-        </ul>
-      </section>
     </main>
+    <div class="social-bottom">
+      <a
+        href="https://instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+      >
+        <img src="images/OIP.webp" alt="Instagram" />
+      </a>
+      <a
+        href="https://facebook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook"
+      >
+        <img src="slike/fb_icon_325x325.png" alt="Facebook" />
+      </a>
+    </div>
+
     <footer>
       <p>&copy; 2025 Coffee Shop. Sva prava zadržana.</p>
     </footer>
