@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Restoran Imperija</title>
+    <link rel="stylesheet" href="restoranstil.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">🍷 Imperija</div>
+      <nav>
+        <a href="#hero">Početna</a>
+        <a href="#about">O nama</a>
+        <a href="#menu">Meni</a>
+        <a href="#gallery">Galerija</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </header>
+
+    <section id="hero" class="hero">
+      <div class="hero-text">
+        <h1>Dobrodošli u Restoran Imperija</h1>
+        <p>Tradicionalna kuhinja • Vrhunski ukus</p>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>O nama</h2>
+        <p>
+          Restoran Imperija kombinuje tradicionalne recepte sa modernim stilom.
+          Naša kuhinja koristi samo sveže i kvalitetne sastojke.
+        </p>
+      </div>
+    </section>
+
+    <section id="menu" class="section dark">
+      <div class="container">
+        <h2>Naš Meni</h2>
+        <div class="menu-grid">
+          <div class="card"><h2>Ćevapi</h2></div>
+          <div class="card"><h2>Pljeskavica</h2></div>
+          <div class="card"><h2>Gurmanska</h2></div>
+          <div class="card"><h2>Corba</h2></div>
+          <div class="card"><h2>Roštilj mix</h2></div>
+          <div class="card"><h2>kolači</h2></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Specijaliteti</h2>
+
+      <div class="carousel">
+        <input type="radio" name="slide" id="slide1" checked />
+        <input type="radio" name="slide" id="slide2" />
+        <input type="radio" name="slide" id="slide3" />
+
+        <div class="slides">
+          <div class="slide">🔥 Roštilj Specijal</div>
+          <div class="slide">🍖 Domaća Kuhinja</div>
+          <div class="slide">🍰 Slatki Dezerti</div>
+        </div>
+
+        <div class="carousel-nav">
+          <label for="slide1" class="nav-btn"></label>
+          <label for="slide2" class="nav-btn"></label>
+          <label for="slide3" class="nav-btn"></label>
+        </div>
+
+        <button class="prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next-btn" onclick="changeSlide(1)">&#10095;</button>
+      </div>
+    </section>
+
+    <section id="gallery" class="section dark">
+      <div class="container">
+        <h2>Galerija</h2>
+        <div class="gallery">
+          <div class="img"><img src="" alt="" /></div>
+          <div class="img"><img src="" alt="" /></div>
+          <div class="img"><img src="" alt="" /></div>
+          <div class="img"><img src="" alt="" /></div>
+          <div class="img"><img src="" alt="" /></div>
+          <div class="img"><img src="" alt="" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Kontakt</h2>
+        <p>📍 Srbija</p>
+        <p>📞 060 123 4567</p>
+        <p>📧 imperija@restoran.rs</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Restoran Imperija</p>
+    </footer>
+
+    <script>
+      let currentSlide = 1;
+      const totalSlides = 3;
+
+      function changeSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 1) currentSlide = totalSlides;
+        if (currentSlide > totalSlides) currentSlide = 1;
+        document.getElementById("slide" + currentSlide).checked = true;
+      }
+    </script>
+  </body>
+</html>
