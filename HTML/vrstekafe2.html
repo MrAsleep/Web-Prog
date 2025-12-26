@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vrste Kafe - Coffee Shop Guide</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f1ea;
+        color: #333;
+        line-height: 1.6;
+      }
+      header {
+        background-color: #8b4513;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      header h1 {
+        font-family: "Playfair Display", serif;
+        margin: 0;
+        font-size: 2.5em;
+      }
+      nav {
+        background-color: #a0522d;
+        padding: 10px;
+        text-align: center;
+      }
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      main {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+      section {
+        margin-bottom: 40px;
+      }
+      h2 {
+        font-family: "Playfair Display", serif;
+        color: #8b4513;
+        border-bottom: 2px solid #8b4513;
+        padding-bottom: 10px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      ul li {
+        background: #fff;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .gallery img {
+        width: 250px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+      }
+      th {
+        background-color: #8b4513;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      dl {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      dt {
+        font-weight: bold;
+        width: 100%;
+        margin-top: 20px;
+      }
+      dd {
+        margin: 0 0 20px 20px;
+        flex: 1;
+      }
+      video,
+      audio {
+        display: block;
+        margin: 20px auto;
+        border-radius: 8px;
+      }
+      footer {
+        background-color: #8b4513;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+      }
+      .intro {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Vodič kroz Vrste Kafe</h1>
+      <p>Otkrijte svet kafe u našem kafiću</p>
+    </header>
+    <nav>
+      <a href="#vrste">Vrste Kafe</a> | <a href="#galerija">Galerija</a> |
+      <a href="#cenovnik">Cenovnik</a> |
+      <a href="#resursi">Resursi za Učenje</a> |
+      <a href="#radno-vreme">Radno Vreme</a>
+    </nav>
+    <main>
+      <section class="intro">
+        <p>
+          Kafa dolazi u raznim oblicima i ukusima, a svaka vrsta ima svoje
+          jedinstvene karakteristike. Dođite i uživajte u našim specijalitetima!
+        </p>
+      </section>
+      <section id="vrste">
+        <h2>Vrste Kafe</h2>
+        <ul>
+          <li>
+            <strong>Espresso</strong>: Jaka kafa koja se priprema pod pritiskom.
+          </li>
+          <li>
+            <strong>Latte</strong>: Kafa sa mlekom, obično se poslužuje sa
+            penom.
+          </li>
+          <li>
+            <strong>Cappuccino</strong>: Espresso sa jednakim delovima mleka i
+            mlečne pene.
+          </li>
+          <li><strong>Americano</strong>: Espresso razblažen vodom.</li>
+        </ul>
+      </section>
+      <section id="galerija">
+        <h2>Galerija Kafe</h2>
+        <div class="gallery">
+          <img src="images/espresso.jpg" alt="Espresso" />
+          <img src="images/latte.png" alt="Latte" />
+          <img src="images/cappucinno.jpg" alt="Cappuccino" />
+        </div>
+      </section>
+      <section>
+        <h2>Priprema Kafe</h2>
+        <dl>
+          <dt>Espresso</dt>
+          <dd>
+            Koristite Espresso aparat i finu kafu. Priprema traje oko 25-30
+            sekundi.
+          </dd>
+          <dt>Latte</dt>
+          <dd>
+            Pripremite espresso, zagrejte mleko i dodajte ga u espresso sa malo
+            pene.
+          </dd>
+          <dt>Cappuccino</dt>
+          <dd>Pripremite espresso, dodajte jednaku količinu mleka i pene.</dd>
+        </dl>
+      </section>
+      <section id="radno-vreme">
+        <h2>Radno Vreme Kafića</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Dan</th>
+              <th>Radno Vreme</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ponedeljak</td>
+              <td>08:00 - 20:00</td>
+            </tr>
+            <tr>
+              <td>Utorak</td>
+              <td>08:00 - 20:00</td>
+            </tr>
+            <tr>
+              <td>Sreda</td>
+              <td>08:00 - 20:00</td>
+            </tr>
+            <tr>
+              <td>Četvrtak</td>
+              <td>08:00 - 20:00</td>
+            </tr>
+            <tr>
+              <td>Petak</td>
+              <td>08:00 - 22:00</td>
+            </tr>
+            <tr>
+              <td>Subota</td>
+              <td>09:00 - 22:00</td>
+            </tr>
+            <tr>
+              <td>Nedelja</td>
+              <td>09:00 - 18:00</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="cenovnik">
+        <h2>Cenovnik</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Artikl</th>
+              <th>30 ml</th>
+              <th>60 ml</th>
+              <th>90 ml</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Espresso</td>
+              <td>150 RSD</td>
+              <td>250 RSD</td>
+              <td>350 RSD</td>
+            </tr>
+            <tr>
+              <td>Latte</td>
+              <td>200 RSD</td>
+              <td>300 RSD</td>
+              <td>400 RSD</td>
+            </tr>
+            <tr>
+              <td>Cappuccino</td>
+              <td>200 RSD</td>
+              <td>300 RSD</td>
+              <td>400 RSD</td>
+            </tr>
+            <tr>
+              <td>Americano</td>
+              <td>150 RSD</td>
+              <td>250 RSD</td>
+              <td>350 RSD</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Video o Pripremi Kafe</h2>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/FEKtVWfixdg"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section>
+        <h2>Zvuk Aparata za Kafu</h2>
+        <audio controls>
+          <source
+            src="C:\Users\140kg bench\Downloads\Ballerina cappuccina 4K  Italian brainrot.mp3"
+            type="audio/mpeg"
+          />
+          Vaš pregledač ne podržava audio element.
+        </audio>
+      </section>
+      <section id="resursi">
+        <h2>Resursi za Učenje</h2>
+        <ul>
+          <li>
+            <a href="https://www.perfectdailygrind.com/">Perfect Daily Grind</a>
+          </li>
+          <li><a href="https://www.thecoffeehouse.com/">Coffee House</a></li>
+          <li><a href="https://www.coffeereview.com/">Coffee Review</a></li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Coffee Shop. Sva prava zadržana.</p>
+    </footer>
+  </body>
+</html>
